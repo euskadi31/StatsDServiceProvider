@@ -1,7 +1,7 @@
 StatsD Silex Provider
 =====================
 
-[![Build Status](https://secure.travis-ci.org/euskadi31/StatsdServiceProvider.png?branch=master)](http://travis-ci.org/euskadi31/StatsdServiceProvider)
+[![Build Status](https://secure.travis-ci.org/euskadi31/StatsDServiceProvider.png?branch=master)](https://travis-ci.org/euskadi31/StatsDServiceProvider)
 
 ```php
 <?php
