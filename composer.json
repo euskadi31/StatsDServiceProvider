@@ -1,0 +1,22 @@
+{
+    "name": "euskadi31/statsd-service-provider",
+    "description": "StatsD provider for Silex",
+    "keywords": ["statsd", "silex", "provider"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Axel Etcheverry",
+            "email": "faxel@etcheverry.biz"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "1.0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "StatsD": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
