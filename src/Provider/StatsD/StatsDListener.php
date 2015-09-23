@@ -112,7 +112,7 @@ class StatsDListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::EXCEPTION => [['onKernelException', Application::EARLY_EVENT]],
+            KernelEvents::EXCEPTION => [['onKernelException', -4]],
             KernelEvents::TERMINATE => [['onKernelTerminate', Application::EARLY_EVENT]]
         ];
     }

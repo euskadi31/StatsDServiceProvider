@@ -11,6 +11,8 @@
 namespace Euskadi31\Silex\Provider;
 
 use Euskadi31\Silex\Provider\StatsDServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
 
 class StatsDServiceProviderTest extends \PHPUnit_Framework_TestCase
@@ -65,5 +67,36 @@ class StatsDServiceProviderTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($eventSubscriberMock));
 
         $service->subscribe($app, $dispatcherMock);
+    }
+
+    public function testException()
+    {
+        $statsdMock = $this->getMockBuilder('Domnikl\Statsd\Client')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $statsdMock->expects($this->once())
+            ->method('increment')
+            ->with($this->equalTo('exception.400'));
+
+        $app = new Application;
+
+        $app->register(new StatsDServiceProvider);
+
+        $app->error(function(\Exception $e, $code) {
+            return new Response('We are sorry, but something went terribly wrong.');
+        });
+
+        $app['statsd'] = function() use ($statsdMock) {
+            return $statsdMock;
+        };
+
+        $app->get('/', function() use ($app) {
+            $app->abort(400);
+        });
+
+        $response = $app->handle(Request::create('/'));
+
+        $this->assertEquals(400, $response->getStatusCode());
     }
 }

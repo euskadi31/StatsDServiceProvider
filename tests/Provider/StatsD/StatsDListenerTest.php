@@ -129,7 +129,7 @@ class StatsDListenerTest extends \PHPUnit_Framework_TestCase
     public function testSubscribedEvents()
     {
         $this->assertEquals([
-            KernelEvents::EXCEPTION => [['onKernelException', Application::EARLY_EVENT]],
+            KernelEvents::EXCEPTION => [['onKernelException', -4]],
             KernelEvents::TERMINATE => [['onKernelTerminate', Application::EARLY_EVENT]]
         ], StatsDListener::getSubscribedEvents());
     }
