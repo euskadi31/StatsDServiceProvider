@@ -1,22 +1,26 @@
 {
     "name": "euskadi31/statsd-service-provider",
-    "description": "StatsD provider for Silex",
-    "keywords": ["statsd", "silex", "provider"],
+    "description": "A StatsD Service Provider for Silex 2.0",
+    "type": "library",
+    "require": {
+        "silex/silex": "~2.0@dev",
+        "domnikl/statsd": "~2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7",
+        "leaphub/phpcs-symfony2-standard": "~2.0.1",
+        "satooshi/php-coveralls": "dev-master"
+    },
     "license": "MIT",
     "authors": [
         {
             "name": "Axel Etcheverry",
-            "email": "faxel@etcheverry.biz"
+            "email": "axel@etcheverry.biz"
         }
     ],
-    "require": {
-        "php": ">=5.3.3",
-        "silex/silex": "1.0.*"
-    },
     "autoload": {
-        "psr-0": {
-            "StatsD": "src/"
+        "psr-4": {
+            "Euskadi31\\Silex\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

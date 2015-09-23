@@ -1,51 +1,30 @@
-StatsD Silex Provider
-=====================
+# Silex StatsD Service Provider
 
-[![Build Status](https://secure.travis-ci.org/euskadi31/StatsDServiceProvider.png?branch=master)](https://travis-ci.org/euskadi31/StatsDServiceProvider)
+[![Build Status](https://img.shields.io/travis/euskadi31/StatsDServiceProvider/master.svg)](https://travis-ci.org/euskadi31/StatsDServiceProvider)
+[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/235980ff-5681-471f-b455-e18dcefc88b0.svg)](https://insight.sensiolabs.com/projects/235980ff-5681-471f-b455-e18dcefc88b0)
+[![Coveralls](https://img.shields.io/coveralls/euskadi31/StatsDServiceProvider.svg)](https://coveralls.io/github/euskadi31/StatsDServiceProvider)
+[![HHVM](https://img.shields.io/hhvm/euskadi31/StatsDServiceProvider.svg)](https://travis-ci.org/euskadi31/StatsDServiceProvider)
+[![Packagist](https://img.shields.io/packagist/v/euskadi31/StatsDServiceProvider.svg)](https://packagist.org/packages/euskadi31/StatsDServiceProvider)
+
+
+## Install
+
+Add `euskadi31/statsd-service-provider` to your `composer.json`:
+
+    % php composer.phar require euskadi31/statsd-service-provider:~2.0
+
+## Usage
+
+### Configuration
 
 ```php
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Silex\Application();
+$app = new Silex\Application;
 
-$app->register(new StatsD\Provider\StatsDServiceProvider(), array(
-    'statsd.host' => '127.0.0.1',
-    'statsd.port' => '8125'
-));
-
-$app->get('/hello/{name}', function ($name) use ($app) {
-    
-    $app['statsd']->increment('hello');
-
-    return 'Hello ' . $app->escape($name);
-});
-
-$app->run();
+$app->register(new \Euskadi31\Silex\Provider\StatsDServiceProvider);
 ```
-
-## Installation
-
-The recommended way to install StatsDServiceProvider is [through
-composer](http://getcomposer.org). Just create a `composer.json` file and
-run the `php composer.phar install` command to install it:
-
-    {
-        "minimum-stability": "dev",
-        "require": {
-            "silex/silex": "1.0.*",
-            "euskadi31/statsd-service-provider": "dev-master"
-        }
-    }
-
-## Tests
-
-To run the test suite, you need [composer](http://getcomposer.org) and
-[PHPUnit](https://github.com/sebastianbergmann/phpunit).
-
-    $ php composer.phar install --dev
-    $ phpunit
 
 ## License
 
-StatsDServiceProvider is licensed under the MIT license.
+StatsDServiceProvider is licensed under [the MIT license](LICENSE.md).
